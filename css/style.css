@@ -126,11 +126,11 @@ body {
 }
 
 .header .logo img {
-    width: 150%;
-    height: 7rem;
-    top: 0;
-    left: 0;
+    width: 150%; /* Adjust or remove if maintaining aspect ratio is desired */
+    max-height: 7rem; /* Use max-height to control the size while maintaining the aspect ratio */
+    position: relative; /* Add if positioning is necessary */
 }
+
 
 
 .client-carousel {
