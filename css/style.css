@@ -1290,3 +1290,26 @@ body {
     }
 
 }
+
+
+@keyframes slideFadeIn {
+  0% {
+    transform: translateX(-50px) scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+
+
+.home h1 {
+    animation: slideFadeIn 1s ease-out forwards;
+}
+
+.home h2 {
+    animation: slideFadeIn 1.5s ease-out 0.5s forwards;
+}
+
