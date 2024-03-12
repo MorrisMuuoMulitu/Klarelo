@@ -191,7 +191,7 @@ body {
 .home {
     min-height: 100vh;
     width: 100vw;
-    background-image: url(../images/img1.jpg);
+    background-image: url(https://ik.imagekit.io/5zp8ovb7c/Klarelo/Images/img1.jpg?updatedAt=1710247034696);
     background-size: cover;
     display: flex;
     align-items: center;
@@ -219,7 +219,7 @@ body {
     left: 0;
     height: 11rem;
     width: 100%;
-    background: url(../images/wave.png);
+    background: url(https://ik.imagekit.io/5zp8ovb7c/Klarelo/Images/wave.png?updatedAt=1710247032601);
     background-size: 100rem 11rem;
     animation: waves 8s linear infinite;
     background-repeat: repeat-x;
@@ -369,7 +369,7 @@ body {
 }
 
 .counters {
-    background-image: url(../images/img2.jpg);
+    background-image: url(https://ik.imagekit.io/5zp8ovb7c/Klarelo/Images/img2.jpg?updatedAt=1710247034800);
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -500,7 +500,7 @@ body {
 .communicate {
     text-align: center;
     align-items: center;
-    background-image: url(../images/img3.jpg);
+    background-image: url(https://ik.imagekit.io/5zp8ovb7c/Klarelo/Images/img3.jpg?updatedAt=1710247035310);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

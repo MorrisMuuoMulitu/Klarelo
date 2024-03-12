@@ -32,8 +32,8 @@ body{
 }
 
 .header .logo img{
-    width: 20%;
-    height: 3rem;
+    width: 150%;
+    height: 7rem;
     top: 0;
     left: 0;
 }
@@ -73,7 +73,7 @@ body{
 .home{
     min-height: 70vh;
     width: 100vw;
-    background-image: url(../images/img3.jpg);
+    background-image: url(https://ik.imagekit.io/5zp8ovb7c/Klarelo/Images/img3.jpg?updatedAt=1710247035310);
     background-size: cover;
     display: flex;
     align-items: center;
