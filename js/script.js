@@ -17,3 +17,11 @@ introsplitTypes.forEach((char, i) => {
     duration: 0.3 // full text duration
   });
 });
+
+
+/* Demo purposes only */
+$(".hover").mouseleave(
+  function () {
+    $(this).removeClass("hover");
+  }
+);
