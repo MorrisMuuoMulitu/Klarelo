@@ -736,7 +736,7 @@ body {
 /* Team Section Styling */
 .team {
     min-height: 100vh;
-    background-color: #00004B;
+    background: linear-gradient(135deg, #1e3c72, #2a5298); /* Gradient background for the section */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -757,11 +757,32 @@ body {
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: 500px;
-    background: #fff;
+    background: #fff; /* Default card background */
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 400px; /* Fixed height for the card */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.snip1344:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Unique Background for Each Card */
+.snip1344:nth-child(1) {
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4); /* Gradient for the first card */
+}
+
+.snip1344:nth-child(2) {
+    background: linear-gradient(135deg, #a1c4fd, #c2e9fb); /* Gradient for the second card */
+}
+
+.snip1344:nth-child(3) {
+    background: linear-gradient(135deg, #84fab0, #8fd3f4); /* Gradient for the third card */
 }
 
 .snip1344:hover {
@@ -801,7 +822,10 @@ body {
 .snip1344 figcaption {
     padding: 20px;
     text-align: center;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for text */
+    margin-top: 60px; /* Space for the profile image */
+    flex-grow: 1; /* Ensures the content takes up remaining space */
+    border-radius: 10px;
 }
 
 .snip1344 h3 {
@@ -842,7 +866,7 @@ body {
     }
 
     .snip1344 .profile {
-        top: 80px;
+        top: 120px; /* Adjusted for smaller screens */
         width: 100px;
         height: 100px;
     }
