@@ -149,25 +149,90 @@ body {
 
 
 
-.client-carousel {
-    display: flex; /* Ensures that flexbox is being used */
-    flex-wrap: wrap; /* Allows logos to wrap onto the next line */
-    justify-content: center; /* Centers the logos horizontally */
-    align-items: center; /* Centers the logos vertically */
+.clients-section {
+    padding: 4rem 0;
+    background: #f8f9fa;
 }
 
-.client-carousel img {
-    width: 10vw; /* Each image will take up 10% of the viewport width */
-    height: auto; /* Ensures the height scales with the width to maintain aspect ratio */
-    object-fit: contain; /* Ensures the images are scaled properly without being cropped */
-    padding: 10px; /* Adds some space around the images */
+.client-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* Media query for mobile devices */
+.client-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.client-logo {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.client-logo img {
+    width: 100%;
+    height: auto;
+    max-width: 150px;
+    opacity: 1;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: scale(0.95);
+}
+
+.client-logo:hover img {
+    transform: scale(1);
+}
+
+.client-logo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 46, 95, 0);
+    transition: background 0.4s ease;
+    z-index: 1;
+}
+
+.client-logo:hover::before {
+    background: rgba(0, 46, 95, 0.1);
+}
+
+.client-logo:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 46, 95, 0.15);
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    .client-carousel img {
-        width: 20vw; /* Increase width percentage for smaller screens */
-        padding: 5px; /* Reduce padding to save space */
+    .client-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 1rem;
+    }
+    
+    .client-logo {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .client-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .client-logo img {
+        max-width: 100px;
     }
 }
 
