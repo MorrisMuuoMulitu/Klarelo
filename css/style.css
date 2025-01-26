@@ -128,9 +128,14 @@ body {
 }
 
 .header .logo img {
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 80px;
     position: relative;
+    margin-right: 20px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .responsive-logo {
@@ -450,13 +455,26 @@ body {
 }
 
 .counters {
-    background-image: url(https://ik.imagekit.io/5zp8ovb7c/Klarelo/Images/img2.jpg?updatedAt=1710247034800);
-    background-size: cover;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    color: #fff;
+    background-color: #FFFFFF; /* Base color */
+    background-image: radial-gradient(circle, rgba(0, 0, 75, 0.1) 20%, transparent 20%);
+    background-size: 20px 20px;
+    color: #00004B;
     padding: 40px 20px;
 }
+
+/* Hover effect for <h3> inside .counters */
+.counters h3:hover {
+    color: #008080; /* Change to your desired hover color */
+    transition: color 0.3s ease; /* Smooth transition */
+}
+
+/* Hover effect for .counter inside .counters */
+.counters .counter:hover {
+    color: #008080; /* Change to your desired hover color */
+    transition: color 0.3s ease; /* Smooth transition */
+}
+
+
 
 .counters .container {
     display: grid;
@@ -581,7 +599,7 @@ body {
 .communicate {
     text-align: center;
     align-items: center;
-    background-image: url(https://ik.imagekit.io/5zp8ovb7c/Klarelo/Images/img3.jpg?updatedAt=1710247035310);
+    background-image: url(https://ik.imagekit.io/5zp8ovb7c/Klarelo/Images/bannerimage2?updatedAt=1737895802113);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -715,56 +733,131 @@ body {
     background-color: #4f84c4;
 }
 
+/* Team Section Styling */
 .team {
-    min-width: 100vw;
-    min-height: 95vh;
-    text-align: center;
-    background-color: #222;
+    min-height: 100vh;
+    background-color: #00004B;
     display: flex;
-    /* Ensure container is flex */
-    flex-direction: column;
-    /* Ensures vertical stacking on mobile */
     justify-content: center;
     align-items: center;
     padding: 20px;
 }
 
-.team .heading {
-    color: #00bfff;
-    margin: 0 0 20px 0;
-    /* Adds space below the heading */
-    padding: 20px 0;
+.team-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
 }
 
-.team .heading::before,
-.team .heading::after {
-    border-color: #00bfff;
-}
-
+/* Card Styling */
 .snip1344 {
-    font-family:'Open Sans',Arial,sans-serif;
-    height: 500px;
-    width: auto;
-    color: #ffffff;
-    text-align: center;
-    flex: 1 1 0;
-    margin: 10px;
-    background-color: #141414;
-    line-height: 1.4em;
     position: relative;
     overflow: hidden;
+    width: 100%;
+    height: 500px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.snip1344:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
 
+.snip1344 .background {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
 
-.snip1344 img {
-    max-width: 100%;
-    height: auto;
+.snip1344:hover .background {
+    filter: grayscale(0%);
+}
 
-    /* Reduce logo size on mobile screens */
-    @media (max-width: 768px) {
-        width: 60%;
-        /* Adjust as needed */
+.snip1344 .profile {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+    height: 120px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.snip1344:hover .profile {
+    transform: translateX(-50%) scale(1.1);
+}
+
+.snip1344 figcaption {
+    padding: 20px;
+    text-align: center;
+    background: #fff;
+}
+
+.snip1344 h3 {
+    font-size: 24px;
+    margin: 10px 0 5px;
+    color: #00004B;
+}
+
+.snip1344 h3 span {
+    display: block;
+    font-size: 16px;
+    color: #00bfff;
+    margin-top: 5px;
+}
+
+.snip1344 .icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.snip1344 .icons a {
+    color: #00004B;
+    font-size: 18px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.snip1344 .icons a:hover {
+    color: #00bfff;
+    transform: translateY(-5px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .team-container {
+        grid-template-columns: 1fr;
+    }
+
+    .snip1344 .profile {
+        top: 80px;
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .team-container {
+        grid-template-columns: 1fr;
+    }
+
+    .snip1344 .profile {
+        top: 80px;
+        width: 100px;
+        height: 100px;
     }
 }
 
@@ -1202,8 +1295,9 @@ body {
     .clients .section-header p {
         padding-bottom: 10px;
         margin-top: 2.5rem;
+        font-weight: bold;
         text-align: center;
-        font-size: 2rem;
+        font-size: 3rem;
     }
 
     .team {
