@@ -128,9 +128,23 @@ body {
 }
 
 .header .logo img {
-    width: 150%; /* Adjust or remove if maintaining aspect ratio is desired */
-    max-height: 7rem; /* Use max-height to control the size while maintaining the aspect ratio */
-    position: relative; /* Add if positioning is necessary */
+    width: 50px;
+    height: 50px;
+    position: relative;
+}
+
+.responsive-logo {
+    width: 50px;
+    height: 50px;
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .responsive-logo {
+        width: 40px;
+        height: 40px;
+    }
 }
 
 
@@ -206,12 +220,12 @@ body {
 }
 
 .home h1 {
-    color: #fff;
+    color: #000;
     font-size: 5.5rem;
 }
 
 .home h2 {
-    color: #fff;
+    color: #000;
     font-size: 3rem;
 }
 
