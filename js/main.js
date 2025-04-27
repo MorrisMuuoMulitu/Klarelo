@@ -7,9 +7,34 @@ $(document).ready(function() {
     // ======================
     // Mobile Navigation
     // ======================
-    $('.fa-bars').click(function() {
-        $(this).toggleClass('fa-times');
-        $('.navbar').slideToggle(300).toggleClass('nav-toggle');
+    const menuBtn = document.querySelector('.fa-bars');
+    const navbar = document.getElementById('main-nav');
+
+    menuBtn.addEventListener('click', function() {
+        this.classList.toggle('fa-times');
+        this.setAttribute('aria-expanded', this.classList.contains('fa-times'));
+        navbar.classList.toggle('active');
+        document.body.style.overflow = navbar.classList.contains('active') ? 'hidden' : 'auto';
+    });
+
+    // Close menu when clicking on a link
+    document.querySelectorAll('#main-nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            menuBtn.classList.remove('fa-times');
+            menuBtn.setAttribute('aria-expanded', 'false');
+            navbar.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+    });
+
+    // Close menu on scroll
+    window.addEventListener('scroll', () => {
+        if (window.innerWidth <= 1000) {
+            menuBtn.classList.remove('fa-times');
+            menuBtn.setAttribute('aria-expanded', 'false');
+            navbar.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
     });
 
     // ======================
