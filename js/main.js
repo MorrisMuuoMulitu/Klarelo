@@ -1,77 +1,116 @@
-$(document).ready(function(){
+/**
+ * Klarelo Communications - Main JavaScript File
+ * Organized into logical sections for better maintainability
+ */
 
-     $('.fa-bars').click(function(){
+$(document).ready(function() {
+    // ======================
+    // Mobile Navigation
+    // ======================
+    $('.fa-bars').click(function() {
         $(this).toggleClass('fa-times');
         $('.navbar').toggleClass('nav-toggle');
     });
 
-    $(window).on('load scroll',function(){
+    // ======================
+    // Scroll Effects
+    // ======================
+    $(window).on('load scroll', function() {
+        // Close mobile menu on scroll
         $('.fa-bars').removeClass('fa-times');
         $('.navbar').removeClass('nav-toggle');
 
-        if($(window).scrollTop()>35)
-        {
-            $('.header').css({'background':'#002e5f','box-shadow':'0 .2rem .5rem rgba(0,0,0,.4)'});
-        }
-        else
-        {
-            $('.header').css({'background':'none','box-shadow':'none'});
-        }
+        // Sticky header effect
+        $('.header').toggleClass('scrolled', $(window).scrollTop() > 35);
+
+        // Back to top button
+        $('.back-to-top').toggleClass('show', $(this).scrollTop() > 100);
     });
 
-    const counters = document.querySelectorAll('.counter');
-    const speed = 120;
-    counters.forEach(counter => {
-	const updateCount = () => {
-		const target = +counter.getAttribute('data-target');
-		const count = +counter.innerText;
-		const inc = target / speed;
-		if (count < target) {
-			counter.innerText = count + inc;
-			setTimeout(updateCount, 1);
-		} else {
-			counter.innerText = target;
-		}
-	};
-	  updateCount();
-   });
+    // Smooth scroll for back to top
+    $('.back-to-top').click(function(e) {
+        e.preventDefault();
+        $('html, body').animate({scrollTop: 0}, 800, 'easeInOutCubic');
+    });
 
-   (function ($) {
-    "use strict";
-    
+    // ======================
+    // Counter Animation
+    // ======================
+    const animateCounters = () => {
+        const counters = document.querySelectorAll('.counter');
+        const duration = 2000; // 2 seconds total animation time
+        const startTime = performance.now();
+        
+        const updateCounters = (timestamp) => {
+            const elapsed = timestamp - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const currentValue = Math.floor(progress * target);
+                counter.textContent = currentValue.toLocaleString();
+            });
+            
+            if (progress < 1) {
+                requestAnimationFrame(updateCounters);
+            }
+        };
+        
+        requestAnimationFrame(updateCounters);
+    };
+
+    // Initialize counters when they come into view
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounters();
+                counterObserver.unobserve(entry.target);
+            }
+        });
+    }, {threshold: 0.5});
+
+    document.querySelectorAll('.counters').forEach(section => {
+        counterObserver.observe(section);
+    });
+
+    // ======================
+    // Carousels
+    // ======================
     $(".clients-carousel").owlCarousel({
         autoplay: true,
         dots: true,
         loop: true,
-        responsive: { 0: {items: 2}, 768: {items: 4}, 900: {items: 6} }
+        responsive: { 
+            0: {items: 2}, 
+            768: {items: 4}, 
+            900: {items: 6} 
+        }
     });
 
     $(".testimonials-carousel").owlCarousel({
         autoplay: true,
         dots: true,
         loop: true,
-        responsive: { 0: {items: 1}, 576: {items: 2}, 768: {items: 3}, 992: {items: 4} }
+        responsive: { 
+            0: {items: 1}, 
+            576: {items: 2}, 
+            768: {items: 3}, 
+            992: {items: 4} 
+        }
     });
-    
-})(jQuery);
 
-$(window).scroll(function () {
-    if ($(this).scrollTop() > 100) {
-        $('.back-to-top').fadeIn('slow');
-    } else {
-        $('.back-to-top').fadeOut('slow');
-    }
-});
-$('.back-to-top').click(function () {
-    $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
-    return false;
-});
+    // ======================
+    // Accordion
+    // ======================
+    $('.accordion-header').click(function() {
+        const $this = $(this);
+        $('.accordion .accordion-body').not($this.next()).slideUp(500);
+        $this.next('.accordion-body').slideToggle(500);
+        $('.accordion-header span').not($this.children()).text('+');
+        $this.children('span').text(function(_, text) {
+            return text === '+' ? '-' : '+';
+        });
+    });
 
-$('.accordion-header').click(function(){
-    $('.accordion .accordion-body').slideUp(500);
-    $(this).next('.accordion-body').slideDown(500);
-    $('.accordion .accordion-header span').text('+');
-    $(this).children('span').text('-');
-});
-
+    // Initialize any other components here
 });
