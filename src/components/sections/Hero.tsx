@@ -5,49 +5,63 @@ import Link from "next/link";
 
 export default function Hero() {
     return (
-        <section id="home" className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-neutral-50">
-            {/* Minimal Background Decoration */}
-            <div className="absolute top-0 right-0 w-1/3 h-full bg-neutral-100 skew-x-12 translate-x-1/2 pointer-events-none" />
+        <section id="home" className="relative min-h-[90vh] flex items-center justify-center bg-white overflow-hidden pt-20">
+            <div className="container-wide relative z-10">
+                <div className="max-w-5xl mx-auto text-center">
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        className="text-secondary-DEFAULT text-sm font-bold uppercase tracking-[0.3em] mb-8"
+                    >
+                        Strategic Communications
+                    </motion.p>
 
-            <div className="container-wide relative z-10 text-center">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                >
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-secondary-DEFAULT/10 text-secondary-DEFAULT text-sm font-semibold tracking-wide uppercase mb-8">
-                        Strategic Communications Agency
-                    </span>
+                    <motion.h1
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="heading-hero mb-10"
+                    >
+                        The Art of <br />
+                        <span className="italic text-neutral-600">Modern Influence</span>
+                    </motion.h1>
 
-                    <h1 className="heading-hero mb-8 max-w-4xl mx-auto">
-                        Crafting Narratives that <span className="text-secondary-DEFAULT">Drive Impact</span>
-                    </h1>
+                    <motion.div
+                        initial={{ opacity: 0, width: 0 }}
+                        animate={{ opacity: 1, width: "100px" }}
+                        transition={{ duration: 1, delay: 0.5 }}
+                        className="h-[1px] bg-secondary-DEFAULT mx-auto mb-10"
+                    />
 
-                    <p className="text-xl text-neutral-600 max-w-2xl mx-auto mb-12 leading-relaxed">
-                        We are Klarelo Communications. We fuse creative strategy with industry expertise to build brands, protect reputations, and foster meaningful connections.
-                    </p>
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        className="text-xl md:text-2xl text-neutral-500 font-light leading-relaxed max-w-2xl mx-auto mb-16 font-sans"
+                    >
+                        We craft narratives that define brands, shaping perception through precision and creativity.
+                    </motion.p>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <Link href="#contact" className="btn-primary w-full sm:w-auto">
-                            Start a Project
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.6 }}
+                        className="flex flex-col sm:flex-row items-center justify-center gap-6"
+                    >
+                        <Link href="#contact" className="btn-editorial">
+                            Work With Us
                         </Link>
-                        <Link href="#work" className="btn-outline w-full sm:w-auto">
-                            View Our Work
+                        <Link href="#about" className="text-sm uppercase tracking-widest border-b border-primary-DEFAULT pb-1 hover:text-secondary-DEFAULT hover:border-secondary-DEFAULT transition-colors">
+                            Explore Our Story
                         </Link>
-                    </div>
-                </motion.div>
+                    </motion.div>
+                </div>
             </div>
 
-            {/* Scroll Indicator */}
-            <motion.div
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:block text-neutral-400"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, y: [0, 10, 0] }}
-                transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-            >
-                <div className="w-[1px] h-12 bg-neutral-300 mx-auto mb-2" />
-                <span className="text-xs uppercase tracking-widest">Scroll</span>
-            </motion.div>
+            {/* Editorial Line Accent */}
+            <div className="absolute left-10 top-0 bottom-0 w-[1px] bg-neutral-100 hidden lg:block" />
+            <div className="absolute right-10 top-0 bottom-0 w-[1px] bg-neutral-100 hidden lg:block" />
         </section>
     );
 }

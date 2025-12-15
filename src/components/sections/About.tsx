@@ -6,70 +6,63 @@ import { STATS } from "@/lib/constants";
 
 export default function About() {
     return (
-        <section id="about" className="py-24 bg-white overflow-hidden">
-            <div className="container-wide grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                {/* Image Side */}
-                <motion.div
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    className="relative"
-                >
-                    <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl shadow-neutral-200/50">
-                        <Image
-                            // Use a placeholder that fits a corporate vibe if the original is too abstract
-                            src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=2940"
-                            alt="Klarelo Team Meeting"
-                            fill
-                            className="object-cover"
-                        />
-                        {/* Overlay Gradient for text readability if needed, but keeping it clean here */}
-                        <div className="absolute inset-0 bg-primary-DEFAULT/10 mix-blend-multiply" />
-                    </div>
+        <section id="about" className="py-32 bg-white">
+            <div className="container-wide">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    {/* Image Side - Editorial Composition */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        className="relative"
+                    >
+                        <div className="relative aspect-[3/4] overflow-hidden bg-neutral-100">
+                            <Image
+                                src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=2940"
+                                alt="Klarelo Team"
+                                fill
+                                className="object-cover saturate-0 hover:saturate-100 transition-all duration-700"
+                            />
+                        </div>
+                        {/* Decorative Offset Border */}
+                        <div className="absolute top-8 left-8 w-full h-full border border-primary-DEFAULT z-[-1]" />
+                    </motion.div>
 
-                    {/* Floating Experience Badge */}
-                    <div className="absolute -bottom-6 -right-6 md:bottom-8 md:-right-8 bg-white p-8 rounded-xl shadow-xl border border-neutral-100 max-w-[240px]">
-                        <p className="text-5xl font-display font-bold text-secondary-DEFAULT mb-2">10+</p>
-                        <p className="text-sm font-medium text-neutral-600 leading-snug">Years of Defining Excellence in Communications</p>
-                    </div>
-                </motion.div>
+                    {/* Content Side */}
+                    <div className="space-y-8">
+                        <span className="text-secondary-DEFAULT text-xs font-bold uppercase tracking-[0.2em] mb-4 block">
+                            Our Philosophy
+                        </span>
 
-                {/* Content Side */}
-                <motion.div
-                    initial={{ opacity: 0, x: 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                >
-                    <span className="text-secondary-DEFAULT font-semibold text-sm tracking-widest uppercase mb-4 block">
-                        Who We Are
-                    </span>
-                    <h2 className="heading-section mb-8">
-                        Architects of <span className="text-primary-DEFAULT">Influence</span> & <span className="text-secondary-DEFAULT">Impact</span>
-                    </h2>
+                        <h2 className="heading-section">
+                            We Build <span className="italic font-normal">Authority</span> & <br />
+                            Architect <span className="italic font-normal">Reputation</span>.
+                        </h2>
 
-                    <div className="space-y-6 text-lg text-neutral-600 leading-relaxed mb-12">
-                        <p>
-                            Klarelo is a premier strategic communications consultancy. We don't just manage reputations; we build legacies. In an era of noise, we ensure your signal is clear, potent, and directed exactly where it matters.
-                        </p>
-                        <p>
-                            Our philosophy blends data-driven insights with creative storytelling. From crisis management to brand advocacy, we operate as your trusted partner in navigating the complex media landscape.
-                        </p>
-                    </div>
+                        <div className="text-editorial space-y-6 text-lg">
+                            <p>
+                                <span className="font-medium text-primary-DEFAULT">Klarelo</span> exists at the intersection of strategy and storytelling. We understand that in a crowded marketplace, clarity is the ultimate currency.
+                            </p>
+                            <p>
+                                Our methodology is rooted in precision. We don't just amplify noise; we distill your brand's essence into a signal that resonates with the right audience, at the right time.
+                            </p>
+                        </div>
 
-                    {/* Stats Grid */}
-                    <div className="grid grid-cols-2 gap-8 border-t border-neutral-100 pt-8">
-                        {STATS.map((stat, index) => (
-                            <div key={stat.id}>
-                                <h3 className="text-4xl font-display font-bold text-primary-DEFAULT mb-1">
-                                    {stat.value}
-                                </h3>
-                                <p className="text-sm font-medium text-neutral-500 uppercase tracking-wide">
-                                    {stat.label}
-                                </p>
-                            </div>
-                        ))}
+                        {/* Minimal Stats */}
+                        <div className="grid grid-cols-3 gap-8 pt-12 border-t border-neutral-200 mt-12">
+                            {STATS.map((stat) => (
+                                <div key={stat.id}>
+                                    <p className="text-4xl font-display font-medium text-primary-DEFAULT mb-2 bg-neutral-50 inline-block px-2 -ml-2">
+                                        {stat.value}
+                                    </p>
+                                    <p className="text-[10px] uppercase tracking-widest text-neutral-500">
+                                        {stat.label}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                </motion.div>
+                </div>
             </div>
         </section>
     );
