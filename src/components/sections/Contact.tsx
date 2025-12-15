@@ -3,9 +3,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { motion } from "framer-motion";
 import { useState } from "react";
-import Button from "../ui/Button";
 
 const contactSchema = z.object({
     name: z.string().min(2, "Name is required"),
@@ -31,7 +29,6 @@ export default function Contact() {
 
     const onSubmit = async (data: ContactFormValues) => {
         setIsSubmitting(true);
-        // Simulate API call
         await new Promise((resolve) => setTimeout(resolve, 2000));
         console.log(data);
         setIsSubmitting(false);
@@ -41,115 +38,97 @@ export default function Contact() {
     };
 
     return (
-        <section id="contact" className="relative py-32 bg-void overflow-hidden">
-            {/* Background Elements */}
-            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay pointer-events-none" />
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-primary-DEFAULT/50 to-transparent" />
-
-            <div className="container-wide relative z-10">
+        <section id="contact" className="py-24 bg-neutral-50">
+            <div className="container-wide">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                     {/* Info Side */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <h2 className="heading-section text-white mb-6">
-                            Let's Create <br />
-                            <span className="text-gradient-cyber">Something Epic</span>
+                    <div>
+                        <span className="text-secondary-DEFAULT font-semibold text-sm tracking-widest uppercase mb-4 block">
+                            Get in Touch
+                        </span>
+                        <h2 className="heading-section mb-6">
+                            Let's Start a Conversation
                         </h2>
-                        <p className="text-neutral-400 text-lg mb-12 max-w-md">
-                            Ready to transcend the ordinary? Reach out and let's discuss how we can elevate your brand to new dimensions.
+                        <p className="text-neutral-600 text-lg mb-12 max-w-md leading-relaxed">
+                            Whether you need to refine your strategy, manage a crisis, or elevate your brand, we're here to help.
                         </p>
 
                         <div className="space-y-8">
                             {[
-                                { label: "Email", value: "klarelocommunications@gmail.com", href: "mailto:klarelocommunications@gmail.com" },
-                                { label: "Phone", value: "0703 406 865", href: "tel:+254703406865" },
-                                { label: "Studio", value: "Pioneer House, Kenyatta Avenue", href: "#" },
-                            ].map((item, index) => (
-                                <motion.a
+                                { label: "Email Us", value: "klarelocommunications@gmail.com", href: "mailto:klarelocommunications@gmail.com" },
+                                { label: "Call Us", value: "0703 406 865", href: "tel:+254703406865" },
+                                { label: "Visit Us", value: "Pioneer House, Kenyatta Avenue", href: "#", sub: "5th Floor, Nairobi, Kenya" },
+                            ].map((item) => (
+                                <a
                                     key={item.label}
                                     href={item.href}
-                                    initial={{ opacity: 0, y: 10 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.1 }}
-                                    className="block group"
+                                    className="block group p-6 bg-white rounded-xl border border-neutral-100 shadow-sm hover:shadow-md transition-all duration-300"
                                 >
-                                    <p className="text-sm text-neutral-500 uppercase tracking-wider mb-1">{item.label}</p>
-                                    <p className="text-2xl font-display text-white group-hover:text-primary-DEFAULT transition-colors">
+                                    <p className="text-sm text-secondary-DEFAULT font-bold uppercase tracking-wider mb-2">{item.label}</p>
+                                    <p className="text-xl font-medium text-neutral-900 group-hover:text-primary-DEFAULT transition-colors">
                                         {item.value}
                                     </p>
-                                </motion.a>
+                                    {item.sub && <p className="text-neutral-500 mt-1">{item.sub}</p>}
+                                </a>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
 
                     {/* Form Side */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        className="glass-panel p-8 md:p-12 rounded-3xl relative overflow-hidden"
-                    >
-                        {/* Form Glow */}
-                        <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-accent-DEFAULT/10 rounded-full blur-[80px] pointer-events-none" />
-
-                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 relative z-10">
+                    <div className="bg-white p-8 md:p-10 rounded-2xl border border-neutral-100 shadow-lg shadow-neutral-100/50">
+                        <h3 className="text-2xl font-bold text-neutral-900 mb-8">Send a Message</h3>
+                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label htmlFor="name" className="text-sm text-neutral-400">Name</label>
+                                    <label htmlFor="name" className="text-sm font-medium text-neutral-700">Name</label>
                                     <input
                                         {...register("name")}
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary-DEFAULT transition-colors"
-                                        placeholder="John Doe"
+                                        className="w-full bg-neutral-50 border border-neutral-200 rounded-lg px-4 py-3 text-neutral-900 focus:outline-none focus:border-secondary-DEFAULT focus:ring-1 focus:ring-secondary-DEFAULT transition-all"
+                                        placeholder="Full Name"
                                     />
                                     {errors.name && <span className="text-xs text-red-500">{errors.name.message}</span>}
                                 </div>
                                 <div className="space-y-2">
-                                    <label htmlFor="email" className="text-sm text-neutral-400">Email</label>
+                                    <label htmlFor="email" className="text-sm font-medium text-neutral-700">Email</label>
                                     <input
                                         {...register("email")}
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary-DEFAULT transition-colors"
-                                        placeholder="john@example.com"
+                                        className="w-full bg-neutral-50 border border-neutral-200 rounded-lg px-4 py-3 text-neutral-900 focus:outline-none focus:border-secondary-DEFAULT focus:ring-1 focus:ring-secondary-DEFAULT transition-all"
+                                        placeholder="email@company.com"
                                     />
                                     {errors.email && <span className="text-xs text-red-500">{errors.email.message}</span>}
                                 </div>
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="subject" className="text-sm text-neutral-400">Subject</label>
+                                <label htmlFor="subject" className="text-sm font-medium text-neutral-700">Subject</label>
                                 <input
                                     {...register("subject")}
-                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary-DEFAULT transition-colors"
-                                    placeholder="Project Inquiry"
+                                    className="w-full bg-neutral-50 border border-neutral-200 rounded-lg px-4 py-3 text-neutral-900 focus:outline-none focus:border-secondary-DEFAULT focus:ring-1 focus:ring-secondary-DEFAULT transition-all"
+                                    placeholder="How can we help?"
                                 />
                                 {errors.subject && <span className="text-xs text-red-500">{errors.subject.message}</span>}
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="message" className="text-sm text-neutral-400">Message</label>
+                                <label htmlFor="message" className="text-sm font-medium text-neutral-700">Message</label>
                                 <textarea
                                     {...register("message")}
-                                    rows={4}
-                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary-DEFAULT transition-colors resize-none"
-                                    placeholder="Tell us about your vision..."
+                                    rows={5}
+                                    className="w-full bg-neutral-50 border border-neutral-200 rounded-lg px-4 py-3 text-neutral-900 focus:outline-none focus:border-secondary-DEFAULT focus:ring-1 focus:ring-secondary-DEFAULT transition-all resize-none"
+                                    placeholder="Tell us about your project..."
                                 />
                                 {errors.message && <span className="text-xs text-red-500">{errors.message.message}</span>}
                             </div>
 
-                            <Button
+                            <button
                                 type="submit"
-                                variant="primary"
-                                size="lg"
-                                className="w-full bg-primary-DEFAULT hover:bg-primary-dim text-white border-none"
                                 disabled={isSubmitting}
+                                className="w-full btn-primary disabled:opacity-70 disabled:cursor-not-allowed"
                             >
                                 {isSubmitting ? "Sending..." : isSuccess ? "Message Sent!" : "Send Message"}
-                            </Button>
+                            </button>
                         </form>
-                    </motion.div>
+                    </div>
                 </div>
             </div>
         </section>
