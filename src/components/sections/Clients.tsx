@@ -1,31 +1,31 @@
 "use client";
 
-import { useRef, useState } from "react";
 import { CLIENTS } from "@/lib/constants";
 import FadeIn from "../animations/FadeIn";
 import Image from "next/image";
-import {
-    motion,
-    useMotionValue,
-    useSpring,
-    useTransform,
-} from "framer-motion";
-import { FiArrowUpRight } from "react-icons/fi";
+import { motion } from "framer-motion";
 
 export default function Clients() {
     return (
-        <section className="section bg-white">
-            <div className="container-custom">
+        <section className="py-32 bg-void border-t border-white/5 relative">
+            {/* Radial gradient for depth */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-dim/10 via-void to-void pointer-events-none" />
+
+            <div className="container-wide relative z-10">
                 <FadeIn>
-                    <div className="text-center mb-16">
-                        <h2 className="heading-2 gradient-text mb-6">Our Clients</h2>
-                        <div className="w-20 h-1 bg-gradient-primary mx-auto rounded-full" />
+                    <div className="text-center mb-20">
+                        <span className="text-accent-DEFAULT font-mono text-sm tracking-wider uppercase mb-4 block">
+                            Trusted By
+                        </span>
+                        <h2 className="heading-section text-white mb-6">
+                            Our <span className="text-gradient-cyber">Partners</span>
+                        </h2>
                     </div>
                 </FadeIn>
 
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
                     {CLIENTS.map((client, index) => (
-                        <Logo client={client} key={index} />
+                        <ClientLogo key={client.id} client={client} index={index} />
                     ))}
                 </div>
             </div>
@@ -33,140 +33,29 @@ export default function Clients() {
     );
 }
 
-const Logo = ({ client }) => {
-    const ref = useRef(null);
-    const [isHovered, setIsHovered] = useState(false);
+const ClientLogo = ({ client, index }: { client: any, index: number }) => {
+    return (
+        <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.05 }}
+            className="group relative flex items-center justify-center p-6 h-40 rounded-3xl bg-white transition-all duration-500 hover:shadow-[0_0_30px_rgba(112,0,255,0.3)] hover:scale-105"
+        >
+            {/* Glow Effect behind logo - adjusted for white card */}
+            <div className="absolute inset-0 bg-white rounded-3xl z-0" />
 
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-
-    const mouseXSpring = useSpring(x);
-    const mouseYSpring = useSpring(y);
-
-    const top = useTransform(mouseYSpring, [0.5, -0.5], ["40%", "60%"]);
-    const left = useTransform(mouseXSpring, [0.5, -0.5], ["40%", "60%"]);
-
-    const handleMouseMove = (e) => {
-        const rect = ref.current.getBoundingClientRect();
-        const width = rect.width;
-        const height = rect.height;
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-        const xPct = mouseX / width - 0.5;
-        const yPct = mouseY / height - 0.5;
-        x.set(xPct);
-        y.set(yPct);
-    };
-
-    const cardVariants = {
-        initial: {
-            scale: 1,
-            rotateX: 0,
-            rotateY: 0,
-        },
-        hover: {
-            scale: 1.05,
-            rotateX: y.get() * 30,
-            rotateY: x.get() * -30,
-        },
-    };
-
-    const content = (
-        <FadeIn>
-            <motion.div
-                ref={ref}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={() => {
-                    x.set(0);
-                    y.set(0);
-                    setIsHovered(false);
-                }}
-                onMouseEnter={() => setIsHovered(true)}
-                style={{
-                    transformStyle: "preserve-3d",
-                }}
-                variants={cardVariants}
-                whileHover="hover"
-                className="relative aspect-square rounded-2xl bg-gradient-to-br from-black to-neutral-900"
-            >
-                <motion.div
-                    style={{
-                        transform: "translateZ(75px)",
-                        transformStyle: "preserve-3d",
-                    }}
-                    className="absolute inset-4 grid place-content-center rounded-xl bg-white shadow-lg"
-                >
+            <div className="relative w-full h-full flex items-center justify-center z-10">
+                {/* Logo - Natural colors, no filters */}
+                <div className="relative w-32 h-32 md:w-40 md:h-24">
                     <Image
                         src={client.logo}
                         alt={client.name}
-                        width={150}
-                        height={150}
-                        className="w-32 h-32 object-contain"
+                        fill
+                        className="object-contain transition-transform duration-500 group-hover:scale-110"
                     />
-                </motion.div>
-
-                {/* Shimmer effect */}
-                <motion.div
-                    style={{
-                        transform: "translateZ(50px)",
-                    }}
-                    initial={{
-                        opacity: 0,
-                    }}
-                    animate={{
-                        opacity: isHovered ? 1 : 0,
-                        transition: {
-                            duration: 0.3,
-                        },
-                    }}
-                    className="absolute inset-0 z-10"
-                >
-                    <motion.div
-                        initial={{
-                            x: "-100%",
-                        }}
-                        animate={{
-                            x: "100%",
-                            transition: {
-                                duration: 0.7,
-                                ease: "linear",
-                                repeat: Infinity,
-                            },
-                        }}
-                        className="h-full w-1/4 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                    />
-                </motion.div>
-
-                {/* Client name and link icon */}
-                <motion.div
-                    style={{
-                        transform: "translateZ(100px)",
-                    }}
-                    initial={{
-                        opacity: 0,
-                        y: 20,
-                    }}
-                    animate={{
-                        opacity: isHovered ? 1 : 0,
-                        y: isHovered ? 0 : 20,
-                        transition: {
-                            duration: 0.3,
-                        },
-                    }}
-                    className="absolute bottom-4 left-4 flex items-center gap-2"
-                >
-                    <p className="text-white text-sm font-semibold">{client.name}</p>
-                    {client.url && <FiArrowUpRight className="text-white" />}
-                </motion.div>
-            </motion.div>
-        </FadeIn>
-    );
-
-    return client.url ? (
-        <a href={client.url} target="_blank" rel="noopener noreferrer">
-            {content}
-        </a>
-    ) : (
-        content
+                </div>
+            </div>
+        </motion.div>
     );
 };

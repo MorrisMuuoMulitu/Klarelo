@@ -3,7 +3,7 @@ export const SITE_CONFIG = {
     description: "Crafting Communication Excellence",
     url: "https://klarelocommunications.com",
     email: "klarelocommunications@gmail.com",
-    phone: "+254 705 122 188",
+    phone: "+254 703 406 865",
     address: {
         building: "Pioneer House, 5th Floor",
         street: "Kenyatta Avenue",
@@ -133,8 +133,8 @@ export const CLIENTS = [
     },
     {
         id: 4,
-        name: "Alexis",
-        logo: "https://ik.imagekit.io/5zp8ovb7c/Klarelo/Logos/alexis.webp",
+        name: "Alexiz",
+        logo: "https://ik.imagekit.io/5zp8ovb7c/Klarelo/Logos/Alexiz.jpeg",
     },
     {
         id: 5,
@@ -150,6 +150,11 @@ export const CLIENTS = [
         id: 7,
         name: "Digital Sacco",
         logo: "https://ik.imagekit.io/5zp8ovb7c/Klarelo/Logos/didgital.webp?updatedAt=1710246042454",
+    },
+    {
+        id: 8,
+        name: "Beauty Square",
+        logo: "https://ik.imagekit.io/5zp8ovb7c/Klarelo/Logos/BautySquare.jpeg",
     },
 ];
 

@@ -65,7 +65,7 @@ export default function Contact() {
                         <div className="space-y-8">
                             {[
                                 { label: "Email", value: "klarelocommunications@gmail.com", href: "mailto:klarelocommunications@gmail.com" },
-                                { label: "Phone", value: "+254 705 122 188", href: "tel:+254705122188" },
+                                { label: "Phone", value: "0703 406 865", href: "tel:+254703406865" },
                                 { label: "Studio", value: "Pioneer House, Kenyatta Avenue", href: "#" },
                             ].map((item, index) => (
                                 <motion.a
