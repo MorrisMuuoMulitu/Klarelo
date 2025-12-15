@@ -64,9 +64,9 @@ export default function Contact() {
 
                         <div className="space-y-8">
                             {[
-                                { label: "Email", value: "hello@klarelo.com", href: "mailto:hello@klarelo.com" },
-                                { label: "Phone", value: "+254 700 000 000", href: "tel:+254700000000" },
-                                { label: "Studio", value: "Nairobi, Kenya", href: "#" },
+                                { label: "Email", value: "klarelocommunications@gmail.com", href: "mailto:klarelocommunications@gmail.com" },
+                                { label: "Phone", value: "+254 705 122 188", href: "tel:+254705122188" },
+                                { label: "Studio", value: "Pioneer House, Kenyatta Avenue", href: "#" },
                             ].map((item, index) => (
                                 <motion.a
                                     key={item.label}
