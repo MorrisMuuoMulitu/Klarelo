@@ -21,6 +21,7 @@ export default function About() {
                                 src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=2940"
                                 alt="Klarelo Team"
                                 fill
+                                sizes="(max-width: 768px) 100vw, 50vw"
                                 className="object-cover saturate-0 hover:saturate-100 transition-all duration-700"
                             />
                         </div>
